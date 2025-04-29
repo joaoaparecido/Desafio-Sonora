@@ -1,19 +1,17 @@
 version: '3.8'
 
 services:
-  postgres:
-    image: postgres:16
-    container_name: postgres-db
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-db
     restart: always
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: cleanarch_pass
-      POSTGRES_DB: produto_db
+      MYSQL_ROOT_PASSWORD: cleanarch_pass
+      MYSQL_DATABASE: produto_db
     ports:
-      - "55432:5432"
+      - "3306:3306"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./init-scripts:/docker-entrypoint-initdb.d
+      - mysql_data:/var/lib/mysql
 
 volumes:
-  postgres_data:
+  mysql_data:
