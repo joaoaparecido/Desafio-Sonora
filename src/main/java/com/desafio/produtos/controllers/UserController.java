@@ -64,4 +64,11 @@ public class UserController {
     public TokenDTO login(@RequestBody LoginDTO login) {
         return loginService.login(login.getCpf(), login.getPassword());
     }
+
+    @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN') or @userSecurityService.hasSameCpf(authentication.principal, #id)")
+    public ResponseEntity<UserDTO> update(@PathVariable Integer id, @RequestBody UpdateUserDTO updateUserDTO) {
+        User updatedUser = userService.update(id, updateUserDTO);
+        return ResponseEntity.ok(userMapper.toDto(updatedUser));
+    }
 }
