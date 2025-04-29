@@ -1,10 +1,7 @@
 package com.desafio.produtos.controllers;
 
 import com.desafio.produtos.domain.User;
-import com.desafio.produtos.dto.CreateUserDTO;
-import com.desafio.produtos.dto.LoginDTO;
-import com.desafio.produtos.dto.UserDTO;
-import com.desafio.produtos.dto.UserMapper;
+import com.desafio.produtos.dto.*;
 import com.desafio.produtos.repositories.UserRepository;
 import com.desafio.produtos.services.LoginService;
 import com.desafio.produtos.services.UserService;
@@ -64,7 +61,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody LoginDTO login) {
+    public TokenDTO login(@RequestBody LoginDTO login) {
         return loginService.login(login.getCpf(), login.getPassword());
     }
 }

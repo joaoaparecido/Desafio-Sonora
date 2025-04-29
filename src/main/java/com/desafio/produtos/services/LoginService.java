@@ -2,6 +2,7 @@ package com.desafio.produtos.services;
 
 import com.desafio.produtos.domain.User;
 import com.desafio.produtos.dto.LoginDTO;
+import com.desafio.produtos.dto.TokenDTO;
 import com.desafio.produtos.exceptions.InvalidCredentialsException;
 import com.desafio.produtos.repositories.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,13 +20,13 @@ public class LoginService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public String login(String cpf, String password) {
+    public TokenDTO login(String cpf, String password) {
         User userFromDatabase = userRepository.getUserByCpf(cpf);
 
         if (userFromDatabase == null || !passwordEncoder.matches(password, userFromDatabase.getPassword())) {
             throw new InvalidCredentialsException("Crendenciais incorretas");
         }
 
-        return jwtService.generateToken(userFromDatabase);
+        return new TokenDTO(jwtService.generateToken(userFromDatabase));
     }
 }
