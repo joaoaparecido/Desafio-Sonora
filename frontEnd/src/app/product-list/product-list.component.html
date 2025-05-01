@@ -1,0 +1,35 @@
+<div class="container mt-4">
+  <h1 class="text-center mb-4">Product List</h1>
+  <button class="btn btn-primary mb-3" (click)="navigateToCreate()">Create Product</button>
+
+  <table class="table table-striped table-bordered" *ngIf="products.length > 0; else noProducts">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Value</th>
+        <th>Stock</th>
+        <th>City</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.productCode }}</td>
+        <td>{{ product.productName }}</td>
+        <td>{{ product.productValue }}</td>
+        <td>{{ product.stock }}</td>
+        <td>{{ product.cityName }}</td>
+        <td>
+          <button class="btn btn-info btn-sm" [routerLink]="['/products', product.productCode]">View</button>
+          <button class="btn btn-warning btn-sm" [routerLink]="['/products/edit', product.productCode]">Edit</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteProduct(product.productCode)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noProducts>
+    <p class="text-center text-muted">No products found. Please add a product.</p>
+  </ng-template>
+</div>

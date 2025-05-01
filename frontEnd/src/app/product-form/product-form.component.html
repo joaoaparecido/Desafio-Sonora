@@ -1,0 +1,76 @@
+<div class="container mt-4">
+  <h1 class="text-center mb-4">{{ isEditMode ? 'Edit Product' : 'Create Product' }}</h1>
+  <form (ngSubmit)="saveProduct()" class="needs-validation" novalidate>
+    <div class="mb-3">
+      <label for="productName" class="form-label">Product Name</label>
+      <input
+        id="productName"
+        [(ngModel)]="product.productName"
+        name="productName"
+        class="form-control"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="productValue" class="form-label">Product Value</label>
+      <input
+        id="productValue"
+        [(ngModel)]="product.productValue"
+        name="productValue"
+        class="form-control"
+        type="number"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="stock" class="form-label">Stock</label>
+      <input
+        id="stock"
+        [(ngModel)]="product.stock"
+        name="stock"
+        class="form-control"
+        type="number"
+        required
+      />
+    </div>
+    <!-- <div class="mb-3">
+      <label for="citySearch" class="form-label">Search City</label>
+      <input
+        id="citySearch"
+        [(ngModel)]="citySearchText"
+        (input)="filterCities()"
+        name="citySearch"
+        class="form-control"
+        placeholder="Type to search cities..."
+      />
+    </div> -->
+    <div class="mb-3">
+      <label for="citySearch" class="form-label">Search City</label>
+      <input
+        id="citySearch"
+        [(ngModel)]="citySearchText"
+        [ngModelOptions]="{standalone: true}"
+        (input)="filterCities()"
+        name="citySearch"
+        class="form-control"
+        placeholder="Type to search cities..."
+      />
+    </div>
+    <div class="mb-3">
+      <label for="cityId" class="form-label">City</label>
+      <select
+        id="cityId"
+        [(ngModel)]="product.cityId"
+        name="cityId"
+        class="form-select"
+        required
+      >
+        <option *ngFor="let city of filteredCities" [value]="city.id">
+          {{ city.name }}
+        </option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-success">Save</button>
+    <button type="button" class="btn btn-secondary" [routerLink]="['/products']">Cancel</button>
+  </form>
+</div>
