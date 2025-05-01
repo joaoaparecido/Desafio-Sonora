@@ -24,8 +24,6 @@ public class CityController {
 
     @GetMapping
     public List<CityDTO> listAll() {
-        return cityService.listAll().stream()
-                .map(cityMapper::toDto)
-                .collect(Collectors.toList());
+        return cityService.listAll().stream().map(cityMapper::toDto).collect(Collectors.toList());
     }
 }

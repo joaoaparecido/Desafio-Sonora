@@ -33,29 +33,6 @@
         required
       />
     </div>
-    <!-- <div class="mb-3">
-      <label for="citySearch" class="form-label">Search City</label>
-      <input
-        id="citySearch"
-        [(ngModel)]="citySearchText"
-        (input)="filterCities()"
-        name="citySearch"
-        class="form-control"
-        placeholder="Type to search cities..."
-      />
-    </div> -->
-    <div class="mb-3">
-      <label for="citySearch" class="form-label">Search City</label>
-      <input
-        id="citySearch"
-        [(ngModel)]="citySearchText"
-        [ngModelOptions]="{standalone: true}"
-        (input)="filterCities()"
-        name="citySearch"
-        class="form-control"
-        placeholder="Type to search cities..."
-      />
-    </div>
     <div class="mb-3">
       <label for="cityId" class="form-label">City</label>
       <select
@@ -65,7 +42,7 @@
         class="form-select"
         required
       >
-        <option *ngFor="let city of filteredCities" [value]="city.id">
+        <option *ngFor="let city of cities" [value]="city.id">
           {{ city.name }}
         </option>
       </select>

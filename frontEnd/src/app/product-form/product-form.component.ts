@@ -15,8 +15,6 @@ import { MatSelectModule } from '@angular/material/select';
 export class ProductFormComponent implements OnInit {
   product: Partial<Product> = { productName: '', productValue: 0, stock: 0, cityId: 0 };
   cities: City[] = [];
-  filteredCities: City[] = [];
-  citySearchText: string = '';
   isEditMode = false;
 
   constructor(
@@ -38,19 +36,10 @@ export class ProductFormComponent implements OnInit {
     this.productService.getCities().subscribe({
       next: (cities) => {
         this.cities = cities;
-        this.filteredCities = cities; // Initialize filteredCities with all cities
+     
       },
       error: (err) => alert('Failed to fetch cities: ' + err.message),
     });
-  }
-
-  // Filter cities based on the search text
-  filterCities() {
-    const searchText = this.citySearchText.toLowerCase();
-    this.filteredCities = this.cities.filter((city) =>
-      city.name.toLowerCase().includes(searchText)
-  );
-  console.log('Filtering cities with search text:', this.filterCities);
   }
 
   saveProduct() {
