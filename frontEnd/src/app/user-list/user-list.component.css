@@ -1,0 +1,12 @@
+.container {
+  max-width: 900px;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #007bff;
+}
+
+button {
+  margin-right: 5px;
+}

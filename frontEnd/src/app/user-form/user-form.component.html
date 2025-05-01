@@ -1,0 +1,48 @@
+<div class="container mt-4">
+  <h1 class="text-center mb-4">{{ isEditMode ? 'Edit User' : 'Create User' }}</h1>
+  <form (ngSubmit)="saveUser()" class="needs-validation" novalidate>
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input
+        id="name"
+        [(ngModel)]="user.name"
+        name="name"
+        class="form-control"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="cpf" class="form-label">CPF</label>
+      <input
+        id="cpf"
+        [(ngModel)]="user.cpf"
+        name="cpf"
+        class="form-control"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="role" class="form-label">Role</label>
+      <input
+        id="role"
+        [(ngModel)]="user.role"
+        name="role"
+        class="form-control"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        id="password"
+        [(ngModel)]="user.password"
+        name="password"
+        class="form-control"
+        type="password"
+        [required]="!isEditMode"
+      />
+    </div>
+    <button type="submit" class="btn btn-success">Save</button>
+    <button type="button" class="btn btn-secondary" [routerLink]="['/users']">Cancel</button>
+  </form>
+</div>

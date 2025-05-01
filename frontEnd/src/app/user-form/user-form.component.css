@@ -1,0 +1,12 @@
+.container {
+  max-width: 600px;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #28a745;
+}
+
+button {
+  margin-right: 10px;
+}

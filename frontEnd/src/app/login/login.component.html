@@ -1,0 +1,27 @@
+<div class="container mt-5">
+  <h1 class="text-center">Login</h1>
+  <form (ngSubmit)="login()" class="mt-4">
+    <div class="mb-3">
+      <label for="cpf" class="form-label">CPF</label>
+      <input
+        id="cpf"
+        [(ngModel)]="credentials.cpf"
+        name="cpf"
+        class="form-control"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        id="password"
+        [(ngModel)]="credentials.password"
+        name="password"
+        class="form-control"
+        type="password"
+        required
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+</div>
