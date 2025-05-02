@@ -19,22 +19,22 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(CpfAlreadyExistsException.class)
     public ResponseEntity<Object> handleCpfAlreadyExists(CpfAlreadyExistsException ex) {
         return ResponseEntity
-            .status(HttpStatus.CONFLICT)
-            .body(ex.getMessage());
+                .status(HttpStatus.CONFLICT)
+                .body(ex.getMessage());
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<Object> handleDataIntegrityViolation(DataIntegrityViolationException ex) {
-        if (ex.getCause() instanceof ConstraintViolationException 
-            && ex.getMessage().contains("cpf")) {
+        if (ex.getCause() instanceof ConstraintViolationException
+                && ex.getMessage().contains("cpf")) {
             return ResponseEntity
-                .status(HttpStatus.CONFLICT)
-                .body("CPF já cadastrado");
+                    .status(HttpStatus.CONFLICT)
+                    .body("CPF já cadastrado");
         }
 
         return ResponseEntity
-            .status(HttpStatus.INTERNAL_SERVER_ERROR)
-            .body("Erro de integridade dos dados");
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Erro de integridade dos dados");
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -46,8 +46,8 @@ public class GlobalExceptionHandler {
             errors.put(fieldName, errorMessage);
         });
         return ResponseEntity
-            .status(HttpStatus.BAD_REQUEST)
-            .body(errors);
+                .status(HttpStatus.BAD_REQUEST)
+                .body(errors);
     }
 
     @ExceptionHandler(InvalidCredentialsException.class)

@@ -19,13 +19,13 @@ public class User {
 
     @Column(name = "nome")
     private String name;
-    
+
     @Column(name = "senha")
     private String password;
-    
+
     @Column(name = "cpf")
     private String cpf;
-    
+
     @Column(name = "role")
     private String role;
 }

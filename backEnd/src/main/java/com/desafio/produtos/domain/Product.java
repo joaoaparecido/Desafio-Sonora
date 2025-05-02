@@ -20,10 +20,10 @@ public class Product {
 
     @Column(name = "nome_produto")
     private String productName;
-    
+
     @Column(name = "valor_produto")
     private Double productValue;
-    
+
     @Column(name = "estoque")
     private Integer stock;
 

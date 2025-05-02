@@ -1,7 +1,6 @@
 package com.desafio.produtos.services;
 
 import com.desafio.produtos.domain.User;
-import com.desafio.produtos.dto.LoginDTO;
 import com.desafio.produtos.dto.TokenDTO;
 import com.desafio.produtos.exceptions.InvalidCredentialsException;
 import com.desafio.produtos.repositories.UserRepository;

@@ -2,13 +2,10 @@ package com.desafio.produtos.controllers;
 
 import com.desafio.produtos.domain.User;
 import com.desafio.produtos.dto.*;
-import com.desafio.produtos.repositories.UserRepository;
 import com.desafio.produtos.services.LoginService;
 import com.desafio.produtos.services.UserService;
-import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -4,7 +4,6 @@ import com.desafio.produtos.services.JwtService;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
-import java.io.IOException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
@@ -15,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import java.io.IOException;
 import java.util.Collections;
 
 @Component
@@ -29,7 +29,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
             @NonNull FilterChain filterChain
     ) throws ServletException, IOException {
         final String authHeader = request.getHeader("Authorization");
-        
+
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
@@ -39,16 +39,16 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
             final String jwt = authHeader.substring(7);
             final String tokenCpf = jwtService.extractCpf(jwt);
             final String role = jwtService.extractRole(jwt);
-            
+
             // Create authentication with user details
             UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                tokenCpf, // Store CPF as principal
-                null,
-                Collections.singleton(new SimpleGrantedAuthority("ROLE_" + role))
+                    tokenCpf, // Store CPF as principal
+                    null,
+                    Collections.singleton(new SimpleGrantedAuthority("ROLE_" + role))
             );
-            
+
             SecurityContextHolder.getContext().setAuthentication(authToken);
-            
+
         } catch (ExpiredJwtException e) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.getWriter().write("Token expired");
