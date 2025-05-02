@@ -1,22 +1,28 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { UserService } from '../user.service';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
   credentials = {
-    cpf: '00000000000', // Default CPF value
-    password: 'admin',  // Default password value
+    cpf: '00000000000',
+    password: 'admin',
+    role: 'ADMIN',
   };
 
-  constructor(private userService: UserService, private router: Router) {}
+  roles = [{ id: 'ADMIN', name: 'Administrador' }, {id: 'USER', name: 'Usuário'} ];
+
+  constructor(private userService: UserService, private router: Router) {
+    console.log('Roles: ', this.roles);
+  }
 
   login() {
     this.userService.login(this.credentials).subscribe({
@@ -28,5 +34,10 @@ export class LoginComponent {
         alert('Login failed: ' + err.error.message);
       },
     });
+  }
+
+  onRoleChange(event: Event) {
+    const selectedRole = (event.target as HTMLSelectElement).value;
+    console.log('Role changed to:', selectedRole);
   }
 }

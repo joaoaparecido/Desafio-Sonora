@@ -3,6 +3,10 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, type HttpIntercep
 import { Observable } from 'rxjs';
 
 export const AuthInterceptor: HttpInterceptorFn = (request: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> => {
+  if (request.url.includes('/login')) {
+    return next(request);
+  }
+
   const token = localStorage.getItem('authToken');
   if (token) {
     request = request.clone({

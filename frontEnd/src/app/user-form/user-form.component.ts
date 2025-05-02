@@ -19,6 +19,7 @@ import { CommonModule } from '@angular/common';
 export class UserFormComponent implements OnInit {
   user: Partial<User> = { name: '', cpf: '', role: '', password: '' };
   isEditMode = false;
+  roles = [{ id: 'ADMIN', name: 'Administrador' }, {id: 'USER', name: 'Usuário'} ];
 
   constructor(
     private userService: UserService,

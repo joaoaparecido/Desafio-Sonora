@@ -9,6 +9,7 @@ export interface Product {
   stock: number;
   cityId: number;
   cityName?: string;
+  cityUf?: string;
 }
 
 export interface City {
@@ -53,5 +54,9 @@ export class ProductService {
   // Get all cities
   getCities(): Observable<City[]> {
     return this.http.get<City[]>(this.citiesUrl);
+  }
+
+  getCitiesByState(state: string): Observable<City[]> {
+    return this.http.get<City[]>(`${this.citiesUrl}?uf=${state}`);
   }
 }

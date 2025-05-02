@@ -2,15 +2,14 @@
   <h1 class="text-center mb-4">User Details</h1>
   <div *ngIf="user" class="card">
     <div class="card-header bg-primary text-white">
-      <h2>{{ user.name }}</h2>
+      <h2>{{ user?.name }}</h2>
     </div>
     <div class="card-body">
-      <p><strong>ID:</strong> {{ user.id }}</p>
-      <p><strong>CPF:</strong> {{ user.cpf }}</p>
-      <p><strong>Nome:</strong> {{ user.name }}</p>
-      <p><strong>role:</strong> {{ user.role }}</p>
+      <p><strong>ID:</strong> {{ user?.id }}</p>
+      <p><strong>CPF:</strong> {{ user?.cpf }}</p>
+      <p><strong>Role:</strong> {{ user?.role }}</p>
     </div>
-    <div class="card-footer">
+    <div class="card-footer text-center">
       <button class="btn btn-secondary" [routerLink]="['/users']">Back to List</button>
     </div>
   </div>

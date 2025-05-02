@@ -1,53 +1,74 @@
 <div class="container mt-4">
   <h1 class="text-center mb-4">{{ isEditMode ? 'Edit Product' : 'Create Product' }}</h1>
   <form (ngSubmit)="saveProduct()" class="needs-validation" novalidate>
-    <div class="mb-3">
-      <label for="productName" class="form-label">Product Name</label>
-      <input
-        id="productName"
-        [(ngModel)]="product.productName"
-        name="productName"
-        class="form-control"
-        required
-      />
+    <div class="row">
+      <div class="col-md-6 col-sm-12 mb-3">
+        <label for="productName" class="form-label">Product Name</label>
+        <input
+          id="productName"
+          [(ngModel)]="product.productName"
+          name="productName"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="col-md-6 col-sm-12 mb-3">
+        <label for="productValue" class="form-label">Product Value</label>
+        <input
+          id="productValue"
+          [(ngModel)]="product.productValue"
+          name="productValue"
+          class="form-control"
+          type="number"
+          required
+        />
+      </div>
     </div>
-    <div class="mb-3">
-      <label for="productValue" class="form-label">Product Value</label>
-      <input
-        id="productValue"
-        [(ngModel)]="product.productValue"
-        name="productValue"
-        class="form-control"
-        type="number"
-        required
-      />
+    <div class="row">
+      <div class="col-md-6 col-sm-12 mb-3">
+        <label for="stock" class="form-label">Stock</label>
+        <input
+          id="stock"
+          [(ngModel)]="product.stock"
+          name="stock"
+          class="form-control"
+          type="number"
+          required
+        />
+      </div>
+      <div class="col-md-6 col-sm-12 mb-3">
+        <label for="state" class="form-label">State (UF)</label>
+        <select
+          id="state"
+          [(ngModel)]="selectedState"
+          name="state"
+          class="form-select"
+          required
+          (change)="onStateChange($event)"
+        >
+          <option *ngFor="let state of states" [value]="state">
+            {{ state }}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-6 col-sm-12 mb-3">
+        <label for="cityId" class="form-label">City</label>
+        <select
+          id="cityId"
+          [(ngModel)]="product.cityId"
+          name="cityId"
+          class="form-select"
+          required
+        >
+          <option *ngFor="let city of cities" [value]="city.id">
+            {{ city.name }}
+          </option>
+        </select>
+      </div>
     </div>
-    <div class="mb-3">
-      <label for="stock" class="form-label">Stock</label>
-      <input
-        id="stock"
-        [(ngModel)]="product.stock"
-        name="stock"
-        class="form-control"
-        type="number"
-        required
-      />
+    <div class="text-center">
+      <button type="submit" class="btn btn-success me-2">Save</button>
+      <button type="button" class="btn btn-secondary" [routerLink]="['/products']">Cancel</button>
     </div>
-    <div class="mb-3">
-      <label for="cityId" class="form-label">City</label>
-      <select
-        id="cityId"
-        [(ngModel)]="product.cityId"
-        name="cityId"
-        class="form-select"
-        required
-      >
-        <option *ngFor="let city of cities" [value]="city.id">
-          {{ city.name }}
-        </option>
-      </select>
-    </div>
-    <button type="submit" class="btn btn-success">Save</button>
-    <button type="button" class="btn btn-secondary" [routerLink]="['/products']">Cancel</button>
   </form>
 </div>

@@ -5,12 +5,12 @@
       <h2>{{ product?.productName }}</h2>
     </div>
     <div class="card-body">
-      <p><strong>ID:</strong> {{ product?.productCode}}</p>
+      <p><strong>ID:</strong> {{ product?.productCode }}</p>
       <p><strong>Value:</strong> {{ product?.productValue }}</p>
       <p><strong>Stock:</strong> {{ product?.stock }}</p>
       <p><strong>City:</strong> {{ product?.cityName }}</p>
     </div>
-    <div class="card-footer">
+    <div class="card-footer text-center">
       <button class="btn btn-secondary" [routerLink]="['/products']">Back to List</button>
     </div>
   </div>
