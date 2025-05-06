@@ -1,9 +1,11 @@
 package com.desafio.produtos.services;
 
 import com.desafio.produtos.domain.User;
+import com.desafio.produtos.dto.LoginDTO;
 import com.desafio.produtos.dto.UpdateUserDTO;
 import com.desafio.produtos.dto.UserMapper;
 import com.desafio.produtos.exceptions.CpfAlreadyExistsException;
+import com.desafio.produtos.exceptions.InvalidCredentialsException;
 import com.desafio.produtos.repositories.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,13 @@ public class UserService {
     public List<User> listAll() {
         return userRepository.findAll();
     }
+
+    public List<User> listAll(Integer userId) {
+        return this.findById(userId)
+                .map(List::of)
+                .orElse(List.of());
+    }
+
 
     public Optional<User> findById(Integer id) {
         return userRepository.findById(id);

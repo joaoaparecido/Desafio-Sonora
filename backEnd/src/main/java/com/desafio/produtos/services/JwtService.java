@@ -6,7 +6,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
@@ -14,6 +13,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+import org.springframework.beans.factory.annotation.Value;
 
 @Service
 public class JwtService {
@@ -32,6 +32,7 @@ public class JwtService {
                 .builder()
                 .setClaims(extraClaims)
                 .claim("role", user.getRole())
+                .claim("id", user.getId())
                 .setSubject(user.getCpf())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + jwtExpiration))
@@ -43,8 +44,12 @@ public class JwtService {
         return extractClaim(token, Claims::getSubject);
     }
 
-    public String extractRole(String token) {
+    public String getRoleFromToken(String token) {
         return extractClaim(token, claims -> claims.get("role", String.class));
+    }
+
+    public Integer getIdFromToken(String token) {
+        return extractClaim(token, claims -> claims.get("id", Integer.class));
     }
 
     public boolean isTokenValid(String token, User user) {

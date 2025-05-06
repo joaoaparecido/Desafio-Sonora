@@ -19,4 +19,8 @@ public class City {
 
     @Column(name = "nome")
     private String name;
+
+    @Column(name = "uf")
+    private String uf;
+
 }

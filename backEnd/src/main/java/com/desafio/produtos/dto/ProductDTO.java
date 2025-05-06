@@ -16,4 +16,5 @@ public class ProductDTO {
     private Integer stock;
     private Integer cityId;
     private String cityName;
+    private String cityUf;
 }

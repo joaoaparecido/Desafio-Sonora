@@ -1,11 +1,11 @@
 package com.desafio.produtos.controllers;
 
+import com.desafio.produtos.domain.City;
 import com.desafio.produtos.dto.CityDTO;
 import com.desafio.produtos.dto.CityMapper;
 import com.desafio.produtos.services.CityService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.v3.oas.annotations.Parameter;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,7 +23,20 @@ public class CityController {
     }
 
     @GetMapping
-    public List<CityDTO> listAll() {
-        return cityService.listAll().stream().map(cityMapper::toDto).collect(Collectors.toList());
+    public List<CityDTO> listAll(@Parameter(description = "UF do estado (opcional)")
+                                     @RequestParam(required = false) String uf
+    ) {
+        List<City> cities;
+
+        if (uf != null && !uf.isEmpty()) {
+            cities = cityService.findByUf(uf.toUpperCase());
+        } else {
+            cities = cityService.listAll();
+        }
+
+        return cities.stream()
+                .map(cityMapper::toDto)
+                .collect(Collectors.toList());
+
     }
 }

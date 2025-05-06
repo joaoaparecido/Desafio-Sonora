@@ -19,13 +19,23 @@ public class User {
 
     @Column(name = "nome")
     private String name;
-
+    
     @Column(name = "senha")
     private String password;
-
+    
     @Column(name = "cpf")
     private String cpf;
-
+    
     @Column(name = "role")
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    public void setRole(String role) {
+        this.role = Role.fromValue(role);
+    }
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
 }
+

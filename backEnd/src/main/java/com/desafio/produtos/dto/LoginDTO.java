@@ -13,4 +13,5 @@ public class LoginDTO {
     private String cpf;
     @NotNull
     private String password;
+    private String role;
 }

@@ -1,8 +1,11 @@
 CREATE TABLE cidade
 (
     id   INTEGER PRIMARY KEY,
-    nome VARCHAR(150) NOT NULL
+    nome VARCHAR(150) NOT NULL,
+    uf   VARCHAR(2) NOT NULL
 );
+
+CREATE INDEX idx_cidade_uf ON cidade(uf);
 
 CREATE TABLE produto
 (

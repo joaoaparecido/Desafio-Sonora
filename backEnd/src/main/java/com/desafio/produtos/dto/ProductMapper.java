@@ -1,5 +1,6 @@
 package com.desafio.produtos.dto;
 
+import com.desafio.produtos.domain.City;
 import com.desafio.produtos.domain.Product;
 import com.desafio.produtos.repositories.CityRepository;
 import org.springframework.stereotype.Component;
@@ -22,10 +23,10 @@ public class ProductMapper {
         product.setProductName(dto.getProductName());
         product.setProductValue(dto.getProductValue());
         product.setStock(dto.getStock());
-
+        
         if (dto.getCityId() != null) {
             cityRepository.findById(dto.getCityId())
-                    .ifPresent(product::setCity);
+                .ifPresent(product::setCity);
         }
 
         return product;
@@ -47,7 +48,7 @@ public class ProductMapper {
         }
         if (dto.getCityId() != null) {
             cityRepository.findById(dto.getCityId())
-                    .ifPresent(product::setCity);
+                .ifPresent(product::setCity);
         }
 
         return product;
@@ -63,10 +64,11 @@ public class ProductMapper {
         dto.setProductName(entity.getProductName());
         dto.setProductValue(entity.getProductValue());
         dto.setStock(entity.getStock());
-
+        
         if (entity.getCity() != null) {
             dto.setCityId(entity.getCity().getId());
             dto.setCityName(entity.getCity().getName());
+            dto.setCityUf(entity.getCity().getUf());
         }
 
         return dto;

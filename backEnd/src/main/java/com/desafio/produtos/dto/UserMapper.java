@@ -1,5 +1,6 @@
 package com.desafio.produtos.dto;
 
+import com.desafio.produtos.domain.Role;
 import com.desafio.produtos.domain.User;
 import org.springframework.stereotype.Component;
 
@@ -58,7 +59,7 @@ public class UserMapper {
         dto.setId(entity.getId());
         dto.setName(entity.getName());
         dto.setCpf(entity.getCpf());
-        dto.setRole(entity.getRole());
+        dto.setRole(entity.getRole().toString());
 
         return dto;
     }

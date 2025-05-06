@@ -14,6 +14,7 @@ public class CityMapper {
         CityDTO dto = new CityDTO();
         dto.setId(entity.getId());
         dto.setName(entity.getName());
+        dto.setUf(entity.getUf());
 
         return dto;
     }

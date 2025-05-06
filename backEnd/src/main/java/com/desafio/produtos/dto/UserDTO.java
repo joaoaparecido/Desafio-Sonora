@@ -1,5 +1,6 @@
 package com.desafio.produtos.dto;
 
+import com.desafio.produtos.validation.UniqueCpf;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
